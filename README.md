@@ -1,40 +1,34 @@
-# HybridNET
- Provided Files:
-HybridNET.py：data_process：Preprocessing module for data preparation before similarity calculations，Adjust_cosine-similar：Analyzes parent and product spectra data to compute adjusted cosine similarity，Cosine-similarityAnalyzes parent and product spectra data to compute cosine similarity ，Dot-similarity：Analyzes parent and product spectra data to compute dot product similarity
-Entropy-similarity：Analyzes parent and product spectra data to compute entropy similarity，Neutral loss-similarity：Analyzes parent and product spectra data to compute neutral loss similarity，similar_evaluate：Evaluates and compares the performance of all five similarity algorithms
+HybridNET
+Provided files:
+HybridNET.py:The similarity between the parent spectrum and the child spectra is calculated using a hybrid algorithm. After the first round of matching yields the highest similarity data for each pair of spectra, the matched child spectra are used as the parent spectra for the second round, and the hybrid algorithm is continuously applied to calculate their similarity with the unmatched child spectra. Through this iterative process, more compounds can be identified.
 
-1. Requirements
+Requirements
 The program requires the following Python libraries:
-- numpy
-- pandas  
-- ms_entropy
-- networkx
-- matplotlib
-- tqdm
+numpy
+pandas
+matchms
+spec2vec
+math
+logging
+pathlib
+datetime
 
 Installation command:
-```bash
-pip install numpy pandas ms_entropy networkx matplotlib tqdm
+```
+pip install numpy pandas matchms spec2vec math logging pathlib datetime
 ```
 
----
-
-2. Important Notes
-
+Important Notes
 Input Data Requirements:
-- The script requires two input files in the working directory:
-  - `parent.xlsx` - Parent spectra data
-  - `product.xlsx` - Product spectra data
-
+The script requires two input files in the working directory:
+`parent.xlsx` - Parent spectra data
+`product.xlsx` - Product spectra data
 Parameter Configuration:
-- Similarity threshold can be adjusted by modifying the condition:
-  ```python
-  if similarity > 0.5  # Default threshold set to 0.5 for identifying similar spectra
-  ```
+Similarity threshold can be adjusted by modifying the condition:
+```
+  THRESHOLD = 0.7  # Default threshold set to 0.7 for identifying similar spectra
+```
 
----
-
- 3. Output Files
-
+Output Files
 Primary Output:
-- `similarities.csv` - Contains computed similarity scores for each parent-product spectra pair
+`result` - Includes data processing result files and the calculation results of the similarity algorithms.
